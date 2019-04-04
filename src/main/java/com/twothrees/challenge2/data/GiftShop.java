@@ -1,4 +1,4 @@
-package com.paxos.techtech.challenge2.data;
+package com.twothrees.challenge2.data;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 

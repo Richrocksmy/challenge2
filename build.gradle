@@ -1,9 +1,13 @@
 plugins {
     id 'java'
+    id "com.github.johnrengelman.shadow" version "4.0.2"
+    id 'application'
 }
 
-group 'com.paxos.techtest'
+group 'com.twothrees'
 version '1.0-SNAPSHOT'
+
+mainClassName='com.twothrees.challenge2.Application'
 
 sourceCompatibility = 1.8
 
@@ -20,5 +24,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 
+    testCompile "org.mockito:mockito-junit-jupiter:2.25.1"
     testCompile "org.assertj:assertj-core:3.12.2"
 }

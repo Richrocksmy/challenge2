@@ -1,4 +1,4 @@
-package com.paxos.techtech.challenge2.data;
+package com.twothrees.challenge2.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,5 +12,10 @@ public class Gift {
   private String name;
 
   private int cost;
+
+  @Override
+  public String toString() {
+    return name + " : " + cost;
+  }
 
 }

@@ -1,9 +1,9 @@
-package com.paxos.techtech.challenge2.decisioning;
+package com.twothrees.challenge2.decisioning;
 
 import static com.google.common.collect.Sets.powerSet;
 
-import com.paxos.techtech.challenge2.data.Gift;
-import com.paxos.techtech.challenge2.data.GiftShop;
+import com.twothrees.challenge2.data.Gift;
+import com.twothrees.challenge2.data.GiftShop;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +45,7 @@ public class DecisionStrategy {
   }
 
   private boolean totalCostOfGiftPairIsLessThanTotalSpend(Set<Gift> gifts, int totalSpend) {
-    return gifts.stream().mapToInt(Gift::getCost).sum() < totalSpend;
+    return gifts.stream().mapToInt(Gift::getCost).sum() <= totalSpend;
   }
 
   private boolean totalCostOfGiftPairIsEqualToTotalSpend(Set<Gift> gifts, int totalSpend) {
