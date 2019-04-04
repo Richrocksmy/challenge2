@@ -4,10 +4,10 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.Getter;
-import org.apache.commons.io.FileUtils;
 
 @Getter
 public class GiftShop {
@@ -19,7 +19,7 @@ public class GiftShop {
   }
 
   private void loadDataFromFile(String file) throws IOException {
-    gifts = FileUtils.readLines(new File(file), UTF_8).stream()
+    gifts = Files.readAllLines(new File(file).toPath(), UTF_8).stream()
         .map(e -> new Gift(e.split(",")[0],
             Integer.parseInt(e.split(",")[1].trim())))
         .collect(Collectors.toSet());

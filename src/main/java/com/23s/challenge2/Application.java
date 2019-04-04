@@ -4,10 +4,10 @@ import com.paxos.techtech.challenge2.data.Gift;
 import com.paxos.techtech.challenge2.data.GiftShop;
 import com.paxos.techtech.challenge2.decisioning.DecisionStrategy;
 import com.paxos.techtech.challenge2.decisioning.DecisionStrategy.Strategy;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import org.apache.commons.lang3.tuple.Pair;
 
 public class Application {
 
@@ -17,9 +17,9 @@ public class Application {
       int totalSpendAmount = Integer.parseInt(args[1]);
 
       DecisionStrategy decisionStrategy = new DecisionStrategy(new GiftShop(giftDataFile));
-      Map<Strategy, Set<Pair<Gift, Gift>>> result = decisionStrategy.findPairs(totalSpendAmount);
+      Map<Strategy, List<Set<Gift>>> result = decisionStrategy.findGifts(totalSpendAmount, 2);
 
-      Optional<Set<Pair<Gift, Gift>>> giftList
+      Optional<List<Set<Gift>>> giftList
           = Optional.of(Optional.of(result.get(Strategy.BEST_OUTCOME)).orElse(result.get(Strategy.BEST_EFFORT)));
 
       if(giftList.isPresent()) {
@@ -32,9 +32,9 @@ public class Application {
     }
   }
 
-  private static void printGiftList(Set<Pair<Gift, Gift>> giftList) {
-    giftList.forEach(g -> System.out.println(g.getLeft().getCost() + " " + g.getLeft().getCost() + ", "
-        + g.getRight().getCost() + " " + g.getRight().getCost()));
+  private static void printGiftList(List<Set<Gift>> giftList) {
+    // TODO - nested streams feels bad..
+    giftList.forEach(g -> g.stream().forEach(go -> System.out.println(go.getName() + ":" + go.getCost())));
   }
 
 }
