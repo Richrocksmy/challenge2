@@ -26,7 +26,8 @@ public class DecisionStrategy {
   public Map<Strategy, List<Set<Gift>>> findGifts(int totalSpendAmount, int numberOfGifts) {
     Set<Gift> giftsWithinPriceRange = giftShop.getGiftsWithinPriceRange(totalSpendAmount);
 
-    Map<Boolean, List<Set<Gift>>> giftsExactlyEqualToSpendAmount = generateUniqueCombinations(giftsWithinPriceRange, numberOfGifts).stream()
+    Map<Boolean, List<Set<Gift>>> giftsExactlyEqualToSpendAmount
+        = generateUniqueCombinations(giftsWithinPriceRange, numberOfGifts).stream()
         .filter(p -> totalCostOfGiftPairIsLessThanTotalSpend(p, totalSpendAmount))
         .collect(Collectors.partitioningBy((Set<Gift> g) -> totalCostOfGiftPairIsEqualToTotalSpend(g, totalSpendAmount)));
 
